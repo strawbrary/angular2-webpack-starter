@@ -9,7 +9,7 @@ import {Title} from '../providers/title';
   directives: [ ...FORM_DIRECTIVES ],
   providers: [ Title ],
   pipes: [ ],
-  styles: [ require('./home.css') ],
+  styles: [ require('./home.scss') ],
   template: require('./home.html')
 })
 export class Home {

@@ -31,7 +31,7 @@ module.exports = {
 
   resolve: {
     // ensure loader extensions match
-    extensions: ['','.ts','.js','.json', '.css', '.html']
+    extensions: ['','.ts','.js','.json', '.css', '.scss', '.html']
   },
 
   module: {
@@ -57,6 +57,12 @@ module.exports = {
 
       // Support for CSS as raw text
       { test: /\.css$/,   loader: 'raw-loader' },
+
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        loader: 'raw-loader!sass-loader'
+      },
 
       // support for .html as raw text
       { test: /\.html$/,  loader: 'raw-loader' },
