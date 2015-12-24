@@ -17,7 +17,10 @@ module.exports = {
   debug: true, // remove in production
 
   entry: {
-    'vendor': './src/vendor.ts',
+    'vendor': [
+      'bootstrap-loader',
+      './src/vendor.ts'
+    ],
     'app': './src/bootstrap.ts' // our angular app
   },
 
@@ -31,7 +34,7 @@ module.exports = {
 
   resolve: {
     // ensure loader extensions match
-    extensions: ['','.ts','.js','.json', '.css', '.scss', '.html']
+    extensions: ['', '.ts', '.js', '.json', '.css', '.scss', '.html']
   },
 
   module: {
@@ -58,14 +61,16 @@ module.exports = {
       // Support for CSS as raw text
       { test: /\.css$/,   loader: 'raw-loader' },
 
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        loader: 'raw-loader!sass-loader'
-      },
+      { test: /\.scss$/, exclude: /node_modules/, loader: 'raw-loader!sass-loader' },
 
       // support for .html as raw text
       { test: /\.html$/,  loader: 'raw-loader' },
+
+      { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
+      { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
+      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
+      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
     ],
     noParse: [ /.+zone\.js\/dist\/.+/, /.+angular2\/bundles\/.+/ ]
   },
